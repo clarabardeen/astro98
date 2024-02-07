@@ -1,11 +1,11 @@
 1. What are 3-5 (or more) commands that you can use on terminal and what do they do? What language is your computer terminal in?
-
+# cd is to get into a new directory, ls is to see the contents of the directory you are in, rm file deletes a file, and mkdir dir_name makes a new directory. I have a mac so my terminal is in Bash. 
 2. Do you have pets? What kind?
-
+# I have one dog, a cocker spaniel named Murray!
 3. If you run across an error, what would your first course of action be?
-
+# my first course of action would be to check my code to see if there were any typos, or if my pathway was incorrect. If that doesn't help I would consult google. 
 4. Funniest thing that happened to you in high school.
-
+# On an extra rainy day I slipped in some mud and basically rolled down a hill. Not too many people saw me do it, but I was muddy for the rest of the day... 
 5. What is a python script? (Keep it simple)
-
+# a python script is basically a python file that should do something when run, like an action or command. 
 
