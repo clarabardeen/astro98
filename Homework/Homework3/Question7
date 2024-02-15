@@ -1,0 +1,8 @@
+# vowels 
+mystring = 'how are you?'
+vowels = ["a", "e", "i", "o", "u"]
+count = 0 
+for character in mystring: 
+    if character in vowels: 
+        count += 1 
+print ("number of vowels in my string is: ", count) 
