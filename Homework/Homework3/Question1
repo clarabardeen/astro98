@@ -1,0 +1,5 @@
+# power of a number
+x = 4 
+y = 2
+z = pow (x, y)
+print (z) 
