@@ -1,0 +1,36 @@
+# minimum and maximum but with loops (how to do while loop?)
+def find_min(myList): 
+    minval = myList[0] 
+    for i in range (len(myList)): 
+        if myList[i] <= minval: 
+            minval = myList[i]
+    return minval 
+list = [1, 2, 3, 4, 5, 6, 7]
+print ("minimum value of my list is: ", find_min(list))
+
+def find_max(myList): 
+    maxval = myList[0] 
+    for i in range (len(myList)): 
+        if myList[i] >= maxval: 
+            maxval = myList[i] 
+    return maxval 
+list = [1, 2, 3, 4, 5, 6, 7]
+print ("maximum value of this list is: ", find_max(list))
+
+lst = [1, 2, 3, 4, 5, 6, 7]
+min = lst[0]
+i=0
+while(i<len(lst)):
+    if lst[i] < min:
+        min = lst[i]
+    i+=1
+print(min)
+
+lst = [1, 2, 3, 4, 5, 6, 7]
+x = 0 
+max = lst[x] 
+while x < len(lst): 
+    if lst[x] > max: 
+        max = lst[x] 
+    x = x+1 
+print(max) 
