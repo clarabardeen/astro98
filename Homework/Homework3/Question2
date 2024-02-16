@@ -1,4 +1,13 @@
-# minimum and maximum 
-mylist = [1, 2, 3, 4, 5, 6, 7] 
-res1 = min(mylist), max(mylist) 
-print ("the min and max of index 1 : " + str (res1))
+# minimum and maximum ?
+mylist = [1, 2, 3, 4, 5, 6, 7]
+def minmax(mylist): 
+    _min = mylist[0]
+    _max = mylist[0]
+    for i in range(len(mylist)): 
+        if _min > mylist[i]: 
+            _min = mylist [i] 
+        if _max < mylist[i]: 
+            _max = mylist[i]
+    return (_min, _max) 
+
+print("the min and max of this list is: ", minmax(mylist))
