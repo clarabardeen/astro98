@@ -10,3 +10,4 @@ def leapyear(year):
             print(f"{year} is TRUE")
     else: 
         print(f"{year} is FALSE") 
+print(leapyear(2024))
