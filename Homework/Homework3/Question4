@@ -1,5 +1,8 @@
 # calculate BMI 
-weight = 60.33
-height = 1.7272
-BMI = weight / height**2
-print (BMI)
+def bodymassindex(height, weight): 
+    return round((weight / height**2),2)
+h = 1.7272
+w = 60.33
+
+bmi = bodymassindex(h, w) 
+print("your bmi is: ", bmi)
