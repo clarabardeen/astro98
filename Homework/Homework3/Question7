@@ -1,8 +1,9 @@
-# vowels 
-mystring = 'how are you?'
-vowels = ["a", "e", "i", "o", "u"]
-count = 0 
-for character in mystring: 
-    if character in vowels: 
-        count += 1 
-print ("number of vowels in my string is: ", count) 
+def countvowels(str): 
+    count=0 
+    vowel = set("aeiouAEIOU")
+    for letters in str: 
+        if letters in vowel: 
+            count = count + 1 
+    print("number of vowels: ", count) 
+str = "hello how are you?"
+countvowels(str)
