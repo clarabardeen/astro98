@@ -1,5 +1,9 @@
 # power of a number
-x = 4 
-y = 2
-z = pow (x, y)
-print (z) 
+x = 2
+y = 3
+w = x
+def power (w): 
+    for i in range(y-1): 
+        w = w*x 
+    return w 
+print (power(w)) 
