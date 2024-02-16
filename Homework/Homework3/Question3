@@ -1,5 +1,5 @@
 # check leap year, conditional
 if (2024 % 4 == 0): 
-    print ("2024 is a leap year")
+    print ("True, 2024 is a leap year")
 else: 
-    print ("2024 is not a leap year")
+    print ("False, 2024 is not a leap year")
