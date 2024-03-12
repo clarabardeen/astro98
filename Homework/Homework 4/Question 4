@@ -1,0 +1,9 @@
+lis = [1, 1, 2, 3, 4, 4] 
+def remove_duplicates(lis):
+    res = []
+    for x in lis:
+        if x not in res:
+            res.append(x)
+    return res
+
+print(remove_duplicates(lis))
