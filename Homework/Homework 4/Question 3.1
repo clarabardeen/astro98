@@ -1,20 +1,26 @@
-lista = []
+twod = [] #make it a thing
 
 for i in range(5):
-    lista.append([])    # >>> [[], [], [], [], []]
+    twod.append([])   
 
 l25 = []
-for i in range(1, 26):
-    l25.append(str(i).zfill(2))
+for i in range(1, 26): # because I want 1 - 25... 
+    l25.append(str(i).zfill(2))  #then append it 
 
-part = 5
+
+# error, I tried to do do row, column formatting and it basically gave me 0 25 times. 
+# i was stumped, consulted https://stackoverflow.com/questions/53618725/print-numbers-5x5-with-nested-list (which was very helpful!)
+
+part = 5  
 k = 0
-while k < len(lista):
-    lista[k] = l25[part-5:part]
+while k < len(twod): 
+    twod[k] = l25[part-5:part]
     k = k + 1
-    part = part + 5
+    part = part + 5 
 
 i = 0
-while i < len(lista):
-    print(*lista[i], sep="  ")
+while i < len(twod):
+    print(*twod[i], sep="  ")
     i = i + 1
+
+
