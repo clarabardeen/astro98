@@ -7,3 +7,5 @@ def remove_duplicates(lis):
     return res
 
 print(remove_duplicates(lis))
+
+# no errors. Was unfamiliar with res so I consulted https://stackoverflow.com/questions/35731289/function-to-remove-duplicates-from-a-list-python
