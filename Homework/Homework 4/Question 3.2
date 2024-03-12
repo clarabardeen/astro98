@@ -26,3 +26,35 @@ for string in strings:
 print(new_strings)
 
 # error, I think I need to convert lista to a string to get this to work? But I think I did that with the join command 
+
+def two_d(): 
+    mainlist = [] 
+    for i in range (0, 5): 
+        minorlist = [] 
+        for j in range (1,6): 
+            minorlist += [j + (5*i)] 
+        mainlist.append(minorlist)
+    return mainlist 
+print(two_d())
+
+# error, when I tried to convert to a string, the code just did not format correctly so I decided to rewrite my array from 3.1 as two_d and then approach it differently; advice was to go through each row (1, 2, 3, 4, 5) see if it is true and set it to ?. 
+
+def question(list): 
+    i = 2
+    while i < 25: 
+        j = i 
+        if j > 4: 
+            row = 0 
+            while j > 4: 
+                row += 1 
+                j -= 5 
+            list[row][j] = '?' 
+            j += 3 
+            if j < 5: 
+                list[row][j] = '?' 
+        else: 
+            list[0][j] = '?' 
+        i +=3
+    return list 
+print(question(two_d()))
+
