@@ -1,0 +1,7 @@
+# checkers, figuring out how to index ft. Claire
+import numpy as np
+z = (8, 8)
+arr = np.zeros(z)
+arr[1::2, ::2] = 1
+arr[::2, 1::2] = 1
+print(arr)
