@@ -1,0 +1,5 @@
+# I need some space
+import numpy as np
+myarr = np.array(['python', 'is', 'difficult']) 
+spaces = np.char.join (' ', myarr) 
+print(spaces)
