@@ -1,1 +1,17 @@
+import numpy as np
+import pandas as pd
+df_AOC = pd.read_csv('AOC_recent_tweets.txt')
+df_AOC
+
+def time_in_hours(column):
+    dec_hour = column.dt.hour + column.dt.minute/60 + column.dt.second/3600 
+    return dec_hour 
+
+df['created_at'] = pd.to_datetime(df['created_at'])
+df['hours'] = time_in_hours(df['created_at'])
+
+df[['created_at', 'hours', 'full_text']].to_csv('AOChourlytweets.csv')
+df.head()
+print df.head()
+
 
