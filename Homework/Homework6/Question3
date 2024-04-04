@@ -1,1 +1,41 @@
-# I have no clue, there is a whole lot going on
+import numpy as np
+import matplotlib.pyplot as plt
+
+# new numpy commands!! very mathematical... 
+def what_pi(N):
+    points = np.random.rand(int(N), 2) # for integer of N, number of points, randomize for variation, this creates a 1x1 sqaure in 2d space
+    distances = np.linalg.norm(points, axis=1) # this is to see if the point lies inside or outside of the quarter circle, distance has to be less than or equal to 1 since the radius of the cirlce is 1 
+    inside_circle = np.sum(distances <= 1) #reverse idea of above 
+    getpi = 4 * inside_circle / N # so approximating pi would be the sum of inside circle over number of random points times 4
+    return getpi
+
+# plot different points either inside or outside of the circle 
+def circle(N):
+    points = np.random.rand(int(N), 2)
+    distances = np.linalg.norm(points, axis=1)
+    inside_circle = points[distances <= 1] 
+    outside_circle = points[distances > 1]
+
+    # make the plot of the circle
+    plt.scatter(inside_circle[:,0], inside_circle[:,1], color='green')
+    plt.scatter(outside_circle[:,0], outside_circle[:,1], color='black')
+    plt.title(f'Approximating Pi')
+    
+
+    getpi = what_pi(N)
+    plt.text(0.005, 0.05, f'Approximated pi Value = {getpi:.9f}') # nine decimal places for pi approximation cuz why not
+    plt.legend()
+    plt.show()
+
+# how many random points should there be? 4 options! 
+N_options = [1e3, 1e4, 1e5, 1e6]
+
+# Calculate π for each N and print results
+for N in N_options:
+    getpi = what_pi(N) # the approximated value of pi for get pi depends on what_pi incorporating the number of random points
+    print(f"When N = {N}: pi is approximately = {getpi:.9f}")
+
+# get the specific graph for 1e4
+circle(1e4)
+
+# got that approximated pi was 3.152800000, pretty close! 
