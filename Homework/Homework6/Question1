@@ -1,1 +1,26 @@
+import random
+# making the random lists
 
+rand_list1 = []
+rand_list2 = []
+rand_list3 = []
+n = 40 
+for i in range(n): 
+    rand_list1.append(random.randint(0,100))
+    rand_list2.append(random.randint(0,100))
+    rand_list3.append(random.randint(0,100))
+    
+# next, I am goin to generate my two subplots 
+import matplotlib.pyplot as plt 
+import numpy as np
+fig, axs = plt.subplots(2,1)
+
+# top 
+axs[0].plot(np.arange(len(rand_list1)), rand_list1, color ='orange', linewidth = 10)
+axs[0].plot(np.arange(len(rand_list2)), rand_list2, color='red', linestyle = 'dashed')
+
+# bottom
+axs[1].scatter(np.arange(len(rand_list3)), rand_list3, color='magenta', marker='D')
+
+# make it show up 
+plt.show()
