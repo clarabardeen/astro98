@@ -1,1 +1,29 @@
+import matplotlib.pyplot as plt 
+import numpy as np
 
+R = 0.083144 
+a = 16.02
+b = 0.1124 
+
+P_r = np.linspace(1, 10, 75) 
+V_r = np.linspace(10, 30, 75)
+
+# use meshgrid so the differing values for P and V can be factored into the graph
+
+P, V = np.meshgrid(P_r, V_r)
+
+# rearrange the equation so that T is isolated! 
+
+T = (P + a * (1 / V**2)) * (V - b) / (R)
+
+# need to make the plot (it is a color mesh grid thing)
+# also for vmin and vmax, based off of kinetics, vmin occurs at T min and vmax occurs at T max
+
+plt.pcolormesh(P, V, T, cmap = 'inferno', vmin=T.min(), vmax=T.max())
+plt.colorbar(label='Temperature(Kelvin)')
+plt.title('Temperature of One Mole of Acetone for Given Volume and Pressure')
+plt.xlabel('Pressure in bar')
+plt.ylabel('Volume in L')
+
+plt.show()
+# yay looks good
