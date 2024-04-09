@@ -1,17 +1,23 @@
-import numpy as np
-import pandas as pd
-df_AOC = pd.read_csv('AOC_recent_tweets.txt')
+import numpy as np 
+import pandas as pd 
+
+df_AOC = pd.read_json('AOC_recent_tweets (1).txt')
+df_AOC_ID = df_AOC.loc[0:, 'id']
+df_AOC_ID
+
+import datetime as dt 
+created_at = df_AOC.loc[:, 'created_at']
+def time_in_hours(): 
+    equation = created_at.dt.hour + created_at.dt.minute/60 + created_at.dt.second/3600
+    return equation 
+dec_hours = time_in_hours()
+dec_hours
+
+df_AOC.insert(1, 'hours', dec_hours)
 df_AOC
 
-def time_in_hours(column):
-    dec_hour = column.dt.hour + column.dt.minute/60 + column.dt.second/3600 
-    return dec_hour 
+df_inter = df_AOC.loc[:, 'created_at':'full_text']
+df_tweets = df_inter.drop(columns = ['id', 'id_str'])
+df_tweets
 
-df['created_at'] = pd.to_datetime(df['created_at'])
-df['hours'] = time_in_hours(df['created_at'])
-
-df[['created_at', 'hours', 'full_text']].to_csv('AOChourlytweets.csv')
-df.head()
-print df.head()
-
-
+df_tweets.to_csv('df_tweets.csv')
