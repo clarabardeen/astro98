@@ -1,1 +1,17 @@
+import seaborn as sns
+import numpy as np 
+import pandas as pd 
+import matplotlib.pyplot as plt 
+
+planets = sns.load_dataset('planets')
+planets
+
+sns.scatterplot(data = planets, x = 'orbital_period', y = 'mass', hue = 'method')
+plt.xlabel('Orbital Period')
+plt.ylabel('Mass')
+plt.xscale('log')
+plt.title('Orbital Period vs Mass')
+plt.legend(title='Discovery Method', loc='upper left', fontsize = 'small')
+plt.show()
+
 
