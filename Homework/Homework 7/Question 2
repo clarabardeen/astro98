@@ -14,4 +14,38 @@ plt.title('Orbital Period vs Mass')
 plt.legend(title='Discovery Method', loc='upper left', fontsize = 'small')
 plt.show()
 
+# stacked bar plot 
 
+RV = planets[planets['method'] == 'Radial Velocity']
+I = planets[planets['method'] == 'Imaging']
+ETV = planets[planets['method'] == 'Eclipse Timing Variations']
+T = planets[planets['method'] == 'Transit']
+A = planets[planets['method'] == 'Astrometry']
+TTV = planets[planets['method'] == 'Transit Timing Variations']
+OBM = planets[planets['method'] == 'Orbital Brightness Modulation']
+M = planets[planets['method'] == 'Microlensing']
+PT = planets[planets['method'] == 'Pulsar Timing']
+PTV = planets[planets['method'] == 'Pulsation Timing Variations']
+
+bar1 = sns.barplot(data = RV, x='year', y = 'number')
+bar2 = sns.barplot(data = I, x='year', y = 'number')
+bar3 = sns.barplot(data = ETV, x='year', y = 'number')
+bar4 = sns.barplot(data = T, x='year', y = 'number')
+bar5 = sns.barplot(data = A, x='year', y = 'number')
+bar6 = sns.barplot(data = TTV, x='year', y = 'number')
+bar7 = sns.barplot(data = OBM, x='year', y = 'number')
+bar8 = sns.barplot(data = M, x='year', y = 'number')
+bar9 = sns.barplot(data = PT, x='year', y = 'number')
+bar10 = sns.barplot(data = PTV, x='year', y = 'number')
+
+sns.barplot(data=planets, x = 'year', y = 'number', hue = 'method')
+planets.dropna(inplace=True)
+plt.xlabel('Year')
+plt.ylabel('Number of Explanets')
+plt.title('Number of Exoplanets Discovered per Year')
+plt.xticks(rotation=45)
+plt.show()
+
+# I tried to use stacked = true, but it would not stack the bars
+# I then tried to code for each bar separately which greatly improved the look! 
+# I talked to Charlie about this in office hours and they said it is likely that the stacked function no longer exists. Either way, so sorry for the late submission but I tried my best!
