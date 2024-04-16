@@ -1,1 +1,41 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from astropy.table import Table
 
+data_table = Table.read('global_CCl4_MM.dat', format='ascii')
+
+df = data_table.to_pandas()
+df.columns = ['year', 'month', 'NHm', 'NHsd', 'SHm', 'SHsd', 'GLm', 'GLsd']
+
+print(df.head())
+
+plt.errorbar(df['year'], df['month'], yerr=df['NHm'], fmt='o', markersize=4)
+plt.xlabel('Year')
+plt.ylabel('Global Mean Concentration')
+plt.title('Global Mean Concentration Over Time')
+plt.grid(True)
+plt.show()
+
+coefficients = np.polyfit(df['year'], df['month'], deg=1)
+
+predicted_values = np.polyval(coefficients, df['year'])
+
+residuals = df['month'] - predicted_values
+chi_squared = np.sum((residuals / df['NHm'])**2) / (len(df) - 2)
+
+print("Linear Model Parameters:")
+print(f"Slope: {coefficients[0]:.6f}")
+print(f"Intercept: {coefficients[1]:.6f}")
+print(f"Final Equation: Global Mean Concentration = {coefficients[0]:.6f} * Date + {coefficients[1]:.6f}")
+print(f"Reduced Chi-squared Value: {chi_squared:.6f}")
+
+if chi_squared < 1:
+    print("The linear model seems to be appropriate.")
+else:
+    print("The linear model may not be appropriate. Further analysis is recommended.")
+
+print("\nBonus:")
+print("CCl4 is a chlorinated hydrocarbon that was once widely used in fire extinguishers,")
+print("refrigerants, and solvents. It has a long atmospheric lifetime and is considered a")
+print("greenhouse gas. The trend observed in global mean concentration over time may")
+print("reflect changes in industrial usage and regulations.")
