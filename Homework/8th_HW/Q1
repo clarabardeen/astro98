@@ -7,32 +7,31 @@ df = pd.read_csv("GlobalLandTemperaturesByState.csv")
 
 df = df[['dt', 'AverageTemperature', 'State']]
 df['dt'] = pd.to_datetime(df['dt'])  
-df = df[df['dt'].dt.year > 2000]  
+df = df[df['dt'].dt.year > 2000]  # filtering for years after 2000
 df = df[df['State'].isin(['Wyoming', 'Nebraska', 'South Dakota'])]  
-df_avg_temp = df.groupby('dt')['AverageTemperature'].mean().reset_index()
+df_avg_temp = df.groupby('dt')['AverageTemperature'].mean().reset_index() #allegedly, this will have the average temp over the three states
 df_avg_temp.columns = ['Date', 'AverageTemperature']
-plt.plot(df_avg_temp['Date'], df_avg_temp['AverageTemperature'], label='Average Temperature')
+plt.plot(df_avg_temp['Date'], df_avg_temp['AverageTemperature'], label='Average Temperature', color = 'red') #let's plot this bad boy
 plt.xlabel('Date')
 plt.ylabel('Average Temperature')
-plt.title('Average Temperature Over Time')
+plt.title('Average Temperature Over Time in Wyoming, Nebraska, and South Dakota')
 plt.legend()
 plt.show()
 
-df_avg_temp['NumericDate'] = pd.to_numeric(df_avg_temp['Date'])
+df_avg_temp['ND'] = pd.to_numeric(df_avg_temp['Date']) #string date to numerical dates, make it a column, pandas is epic
 
 def model_equation(x, a, b, c, d):
-    return a * np.sin(b * x + c) + d
+    return a * np.sin(b * x + c) + d  #random equation using the 4 parameters
 
-initial_guess = [10, 2*np.pi, 0, 10]  # initial guess
+initial_guess = [10, 3*np.pi, 0, 10]  # initial guess
 
-popt, pcov = curve_fit(model_equation, df_avg_temp['NumericDate'], df_avg_temp['AverageTemperature'], p0=initial_guess)
+popt, pcov = curve_fit(model_equation, df_avg_temp['ND'], df_avg_temp['AverageTemperature'], p0=initial_guess)
 
-plt.figure(figsize=(10, 6))
 plt.plot(df_avg_temp['Date'], df_avg_temp['AverageTemperature'], label='Average Temperature')
-plt.plot(df_avg_temp['Date'], model_equation(df_avg_temp['NumericDate'], *popt), label='Fitted Curve', linestyle='--')
+plt.plot(df_avg_temp['Date'], model_equation(df_avg_temp['ND'], *popt), label='Fitted Curve', linestyle='-', color = 'green')
 plt.xlabel('Date')
 plt.ylabel('Average Temperature')
-plt.title('Fitted Curve vs. Average Temperature Over Time')
+plt.title('Fitted Curve Compared To Average Temperature Over Time')
 plt.legend()
 plt.show()
 
@@ -42,5 +41,5 @@ print("Parameters and errors:")
 for i, param in enumerate(popt):
     print(f"Parameter {i+1}: {param:.2f} +/- {parameter_errors[i]:.2f}")
 
-print("\nFinal equation:")
+print("Final equation:")
 print(f"Temperature = {popt[0]:.2f} * sin({popt[1]:.2f} * x + {popt[2]:.2f}) + {popt[3]:.2f}")
