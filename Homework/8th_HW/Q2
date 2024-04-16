@@ -2,14 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from astropy.table import Table
 
-data_table = Table.read('global_CCl4_MM.dat', format='ascii')
+data_table = Table.read('global_SF6_MM.dat', format='ascii')
 
-df = data_table.to_pandas()
-df.columns = ['year', 'month', 'NHm', 'NHsd', 'SHm', 'SHsd', 'GLm', 'GLsd']
+df = data_table.to_pandas() #time to do pandas
+df.columns = ['year', 'month', 'NHm', 'NHsd', 'SHm', 'SHsd', 'GLm', 'GLsd'] # I included all 8 columns because I was running into errors, I think it was confusing the plot?
 
-print(df.head())
+print(df.head()) #printing the first five rows of the new df! just want to make sure... 
 
-plt.errorbar(df['year'], df['month'], yerr=df['NHm'], fmt='o', markersize=4)
+plt.errorbar(df['year'], df['month'], yerr=df['NHm'], fmt='o', markersize=2) #plotting error
 plt.xlabel('Year')
 plt.ylabel('Global Mean Concentration')
 plt.title('Global Mean Concentration Over Time')
@@ -21,21 +21,19 @@ coefficients = np.polyfit(df['year'], df['month'], deg=1)
 predicted_values = np.polyval(coefficients, df['year'])
 
 residuals = df['month'] - predicted_values
-chi_squared = np.sum((residuals / df['NHm'])**2) / (len(df) - 2)
+chi_squared = np.sum((residuals / df['NHm'])**2) / (len(df) - 2) #chi-squared calculation, this took forever lol
 
-print("Linear Model Parameters:")
-print(f"Slope: {coefficients[0]:.6f}")
+print("Linear Model Parameters:") #parameters
 print(f"Intercept: {coefficients[1]:.6f}")
-print(f"Final Equation: Global Mean Concentration = {coefficients[0]:.6f} * Date + {coefficients[1]:.6f}")
+print(f"Final Equation: Global Mean Concentration = {coefficients[0]:.6f} * Date + {coefficients[1]:.6f}") #the coefficients[0] is slope. final equation is y = mx+b form
 print(f"Reduced Chi-squared Value: {chi_squared:.6f}")
 
 if chi_squared < 1:
-    print("The linear model seems to be appropriate.")
+    print("The linear model is accepted.")
 else:
-    print("The linear model may not be appropriate. Further analysis is recommended.")
-
-print("\nBonus:")
-print("CCl4 is a chlorinated hydrocarbon that was once widely used in fire extinguishers,")
-print("refrigerants, and solvents. It has a long atmospheric lifetime and is considered a")
-print("greenhouse gas. The trend observed in global mean concentration over time may")
-print("reflect changes in industrial usage and regulations.")
+    print("The linear model is not accepted.")
+print("SF6 or Sulphur hexafluoride is a greenhouse gas that has similar effects to CO2")
+print("SF6 is much more potent than CO2 that is used in the electricty industry")
+print("It is stable, non-toxic, and non flammable but this stability allows for it to trap infrared radiation")
+print("It is much more potent in warming the Earth's atmopsphere than CO2 for longer periods of time")
+print("It is estimated that over 100 years, SF6 is 23,500 times more effective at trapping infrared radiation than CO2. Which is not good whatsoever.")
